@@ -84,7 +84,7 @@ export default function Home() {
         <Flex fillWidth gap="24" mobileDirection="column">
           <Flex flex={1} paddingLeft="l" paddingTop="24">
             <Heading as="h2" variant="display-strong-xs" wrap="balance">
-              LATEST FROM ALAA AYMAn
+              LATEST FROM ALAA 2
             </Heading>
           </Flex>
           <Flex flex={3} paddingX="20">

@@ -1,4 +1,4 @@
-import { Column, Heading, Text } from "@/once-ui/components";
+import { Column, Heading } from "@/once-ui/components";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import { baseURL } from "@/app/resources";
@@ -11,11 +11,11 @@ export async function generateMetadata() {
     description: blog.description,
     baseURL: baseURL,
     image: `${baseURL}/og?title=${encodeURIComponent(blog.title)}`,
-    path: blog.path,
+    path: "/blogexample",
   });
 }
 
-export default function Blog() {
+export default function BlogExample() {
   return (
     <Column maxWidth="s">
       <Schema
@@ -23,22 +23,25 @@ export default function Blog() {
         baseURL={baseURL}
         title={blog.title}
         description={blog.description}
-        path={blog.path}
+        path="/blogexample"
         image={`${baseURL}/og?title=${encodeURIComponent(blog.title)}`}
         author={{
           name: person.name,
-          url: `${baseURL}/blog`,
+          url: `${baseURL}/blogexample`,
           image: `${baseURL}${person.avatar}`,
         }}
       />
       <Heading marginBottom="l" variant="display-strong-s">
         {blog.title}
       </Heading>
-      <Text onBackground="neutral-weak" marginBottom="l">A simple example post is shown below.</Text>
       <Column fillWidth flex={1}>
-        <Posts range={[1,1]} thumbnail direction="column" postsPath={["src","app","blog","simple-posts"]} basePath="/blog" />
+        <Posts range={[1,1]} thumbnail direction="column" postsPath={["src","app","blogexample","posts"]} basePath="/blogexample" />
+        <Posts range={[2,3]} thumbnail postsPath={["src","app","blogexample","posts"]} basePath="/blogexample" />
+        <Posts range={[4]} columns="2" postsPath={["src","app","blogexample","posts"]} basePath="/blogexample" />
       </Column>
       {newsletter.display && <Mailchimp newsletter={newsletter} />}
     </Column>
   );
 }
+
+

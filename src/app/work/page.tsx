@@ -3,6 +3,7 @@ import { baseURL } from "@/app/resources";
 import { about, person, work } from "@/app/resources/content";
 import { Meta, Schema } from "@/once-ui/modules";
 import { Projects } from "@/components/work/Projects";
+import { getPosts } from "@/app/utils/utils";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -15,6 +16,16 @@ export async function generateMetadata() {
 }
 
 export default function Work() {
+  let projects;
+  
+  try {
+    projects = getPosts(["src", "app", "work", "projects"]);
+    console.log('Projects loaded:', projects?.length || 0, 'projects');
+  } catch (error) {
+    console.error('Error loading projects:', error);
+    projects = [];
+  }
+
   return (
     <Column maxWidth="m">
       <Schema
@@ -30,7 +41,7 @@ export default function Work() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Projects />
+      <Projects projects={projects || []} />
     </Column>
   );
 }

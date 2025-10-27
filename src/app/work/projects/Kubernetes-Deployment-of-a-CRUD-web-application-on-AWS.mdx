@@ -1,0 +1,68 @@
+---
+title: "Kubernetes Deployment of a CRUD Web Application on AWS"
+publishedAt: "2025-10-26"
+summary: "End-to-end deployment of a containerized CRUD web application using Docker, Amazon RDS, and AWS Elastic Kubernetes Service (EKS) for scalability, reliability, and automation."
+category: "devops-cloud"
+images:
+  - "/images/projects/project-01/crud-app-on-aws.png"
+team:
+  - name: "Alaaddine Tabet"
+    role: "DevOps Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/alaaddinetabet/"
+link: "https://github.com/TABET-Alaa/aws-k8s-nodejs-demo.git"
+---
+
+## Overview
+
+This project focuses on deploying a **CRUD web application** into a **Kubernetes cluster on AWS**, leveraging Docker for containerization and **Amazon RDS** for the database backend.  
+The goal was to achieve **scalable, resilient, and self-healing deployments** while maintaining environment consistency through containerization.
+
+The entire process — from building and testing the Docker image to deploying it on **AWS Elastic Kubernetes Service (EKS)** — was designed as a clear **DevOps pipeline**, ensuring automation and high availability.
+
+---
+
+## Key Features
+
+- **Containerization with Docker**: Built a lightweight Docker image for the CRUD app, packaging all dependencies.
+- **Database Integration**: Configured Amazon RDS (MySQL/PostgreSQL) as the persistent backend with secure access.
+- **Automated Deployment to EKS**: Deployed the container as a pod in AWS EKS using Kubernetes manifests.
+- **Testing & Validation**: Local image testing on EC2 and connectivity verification between pods and RDS.
+- **Monitoring & Self-Healing**: Leveraged Kubernetes health checks and auto-restart features for reliability.
+- **Scalability**: Enabled horizontal pod autoscaling to handle variable traffic.
+
+---
+
+## Project Workflow
+
+1. **Build Stage** – Created the Dockerfile and built the image locally.  
+2. **Test Stage** – Ran the container on a local EC2 instance to validate CRUD operations and RDS connectivity.  
+3. **Push Stage** – Uploaded the final Docker image to Docker Hub for deployment.  
+4. **Deploy Stage** – Configured Kubernetes manifests (Deployment, Service, ConfigMap, Secret).  
+
+---
+
+## AWS Services Used
+
+- **EKS (Elastic Kubernetes Service)** – for container orchestration  
+- **EC2** – for local build and image testing  
+- **RDS** – managed relational database for app persistence  
+- **IAM** – for secure access control between EKS and RDS  
+
+---
+
+## Results
+
+- ✅ **Consistent Deployment**: Environment-independent builds using Docker  
+- ✅ **Self-Healing Infrastructure**: Automatic pod recovery on failures  
+- ✅ **Improved Scalability**: Horizontal scaling based on traffic load  
+- ✅ **Simplified Rollouts**: Declarative Kubernetes deployments and easy rollback support  
+- ✅ **High Availability**  
+
+---
+
+## Conclusion
+
+This project demonstrates how a simple CRUD application can evolve into a **cloud-native, production-ready deployment** using containerization and Kubernetes.  
+By combining **Docker**, **AWS EKS**, and **Amazon RDS**, we achieved a reliable, flexible, and scalable architecture — ideal for real-world enterprise environments.
+

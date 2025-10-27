@@ -8,16 +8,17 @@ interface PostProps {
     post: any;
     thumbnail: boolean;
     direction?: "row" | "column";
+    basePath?: string;
 }
 
-export default function Post({ post, thumbnail, direction }: PostProps) {
+export default function Post({ post, thumbnail, direction, basePath = '/blog' }: PostProps) {
     return (
         <SmartLink
             fillWidth
             unstyled
             style={{ borderRadius: 'var(--radius-l)' }}
             key={post.slug}
-            href={`/blog/${post.slug}`}>
+            href={`${basePath}/${post.slug}`}>
             <Flex
                 position="relative"
                 transition="micro-medium"

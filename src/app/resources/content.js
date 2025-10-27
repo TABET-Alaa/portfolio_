@@ -1,16 +1,16 @@
-import { Logo } from "@/once-ui/components";
+ 
 
 const person = {
-  firstName: "Selene",
-  lastName: "Yu",
+  firstName: "TABET",
+  lastName: "Alaaddine",
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  role: "Software Engineer | DevOps | AWS | AZURE | ERP & CRM - Service now, SAP -",
+  avatar: "/images/avatar.jpeg",
+  email: "alta.tabet@gmail.com",
+  location: "Casablanca,Morocco",
+  languages: ["English", "Frensh", "Arabe"],
 };
 
 const newsletter = {
@@ -18,24 +18,22 @@ const newsletter = {
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: (
     <>
-      I occasionally write about design, technology, and share thoughts on the intersection of
+      I occasionally write about AI, technology, and share thoughts on the intersection of
       creativity and engineering.
     </>
   ),
 };
 
 const social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system/nextjs-starter",
+    link: "https://github.com/TABET-Alaa",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/alaaddine-tabet-9010241aa/",
   },
   {
     name: "X",
@@ -55,7 +53,7 @@ const home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  headline: <>Building scalable systems for the enterprise world</>,
   featured: {
     display: true,
     title: <>Recent project: <strong className="ml-4">Once UI</strong></>,
@@ -63,12 +61,11 @@ const home = {
   },
   subline: (
     <>
-      I'm Selene, a design engineer at <Logo icon={false} style={{ display: "inline-flex", top: "0.25em", marginLeft: "-0.25em" }}/>, where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      I'm Alaaddine TABET, focused on monolith-to-microservices migration, cloud technologies, and ERP systems for enterprise applications.
     </>
   ),
 };
-
+/* I'm [Your Name], a final-year CS student focused on cloud, microservices, and enterprise systems like ERP. I learn by building. */
 const about = {
   path: "/about",
   label: "About",
@@ -83,63 +80,77 @@ const about = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: `mailto:${person.email}`,
   },
   intro: {
     display: true,
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        I am a passionate software developer and fifth-year computer engineering 
+        student specializing in DevOps methodologies, cloud technologies (AWS 
+        and Azure), and ERP systems such as ServiceNow and SAP. My work focuses 
+        on bridging the gap between development and operations while exploring 
+        the transformative potential of intelligent automation and cloud-driven 
+        solutions. Currently seeking opportunities to apply my technical expertise
+         in innovative environments, I thrive on solving complex challenges 
+         through automation, continuous integration, and scalable system design. 
+         I bring a rigorous, adaptable approach to modern technology challenges, 
+         with a strong drive to learn and contribute to ambitious projects that 
+         push the boundaries of what's possible in the DevOps, cloud, and ERP 
+         landscape.
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
+    display: true, 
     title: "Work Experience",
     experiences: [
+           {
+  company: "Digitalia Solutions",
+  timeframe: "Juillet 2025 - Septembre 2025",
+  role: " Ingénieur Full Stack",
+  achievements: [
+    <>
+    Design and development of an HR mini-ERP for SMEs, including modules for leave management, absence tracking, time tracking, and document generation .
+    </>,
+    <>
+      Built with Spring Boot (backend), Angular (frontend), and PostgreSQL.
+    </>,
+    <>
+      Delivered a functional prototype automating HR workflows and providing a clean, intuitive user interface.
+    </>,
+  ],
+  images: [],
+},
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
-        achievements: [
-          <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
-          </>,
-          <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
-          </>,
-        ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
-      },
-      {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
-        achievements: [
-          <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
-          </>,
-        ],
-        images: [],
-      },
+  company: "FINATECH GROUP",
+  timeframe: "Avril 2024 - Juin 2024",
+  role: "Intégrateur de Solutions IT",
+  achievements: [
+    <>
+      Étude et mise en place d'un système de gestion de suivi des tickets et incidents basé sur la solution open-source GLPI, remplaçant le système manuel Excel.
+    </>,
+    <>
+      Configuration technique avancée : OAuth avec Gmail, notifications personnalisées, arborescence clients et génération de rapports statistiques pour l'amélioration continue du service.
+    </>,
+  ],
+  images: [],
+},
+{
+  company: "GRENER HOLDING",
+  timeframe: "Avril 2023 - Juin 2023",
+  role: "Frontend Développeur",
+  achievements: [
+    <>
+      Conception et développement d'un Energy Management System IoT pour l'Industrie 4.0 utilisant React.js, Tailwind CSS et Django REST API.
+    </>,
+    <>
+      Création de tableaux de bord interactifs pour le monitoring en temps réel de la consommation énergétique et collaboration avec les équipes pour définir le cahier des charges.
+    </>,
+  ],
+  images: [],
+},
     ],
   },
   studies: {
@@ -147,17 +158,21 @@ const about = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "Ecole Marocaine des Sciences d'Ingénieur (EMSI)",
+        description: <>Engineering Cycle in Computer Methods Applied to Business Management (MIAGE) (2024-2026).</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Ecole Supérieure de Technologie Casa (ESTC)",
+        description: <>Professional License in Software Engineering & Systems and Network Administration (2023-2024). </>,
+      },
+      {
+        name: "Ecole Supérieure de Technologie Casa (ESTC)",
+        description: <>D.U.T in Computer Engineering (2021-2023).</>,
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: false, // set to false to hide this section
     title: "Technical skills",
     skills: [
       {
@@ -201,8 +216,7 @@ const blog = {
   label: "Blog",
   title: "Writing about design and tech...",
   description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
+  // The full examples moved to /blogexample; /blog shows a simple example
 };
 
 const work = {

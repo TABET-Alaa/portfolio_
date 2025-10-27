@@ -1,0 +1,90 @@
+---
+title: "CI/CD Pipeline Automation with Jenkins & Docker"
+publishedAt: "2022-04-14"
+summary: "Implementation of a full CI/CD pipeline for a web application using Jenkins, Docker, GitLab, and Maven, following DevOps principles to automate build, test, and deployment stages."
+category: "devops-cloud"
+images:
+  - "/images/projects/project-01/CICD-Pipeline-Automation-with-Jenkins-Docker.png"
+  
+team:
+  - name: "Alaaddine Tabet"
+    role: "DevOps Engineer"
+    avatar: "/images/avatar-alaaddine.jpg"
+    linkedIn: "https://www.linkedin.com/in/alaaddinetabet/"
+  - name: "Mohammed El Mahfoudi"
+    role: "Software Engineer"
+    avatar: "/images/avatar-mohammed.jpg"
+  - name: "Kawtar Khalfaoui"
+    role: "DevOps Engineer"
+    avatar: "/images/avatar-kawtar.jpg"
+supervisor:
+  - name: "Mr. Houssaine Ziyati"
+    role: "Project Supervisor – EST Casablanca"
+link: "https://drive.google.com/file/d/1fcKuKrM908IZo0q7pc9-MEai0KVnEQ3P/view?usp=sharing"
+---
+
+## Overview
+
+This academic project focused on the **continuous integration and deployment (CI/CD)** of a web application by building an automated pipeline with **Jenkins**.  
+The pipeline handled every stage from source control to containerization, ensuring faster delivery, fewer manual errors, and consistent deployment environments.
+
+The project was carried out at **EST Casablanca** as part of the final-year studies, under the supervision of **Mr. Houssaine Ziyati**.
+
+## Objectives
+
+- Automate the testing, build, and deployment of a web application.  
+- Integrate CI/CD tools into a coherent DevOps workflow.  
+- Leverage Docker for consistent environment management.  
+- Apply DevOps principles to ensure reliability, collaboration, and agility.
+
+## Key Features
+
+- **Source Control Integration:** Git & GitLab for version management and collaboration.  
+- **Automated Build:** Maven used for project build management and dependency handling.  
+- **Automated Testing:** Selenium WebDriver integrated into Jenkins pipeline for functional testing.  
+- **CI/CD Pipeline:** Jenkinsfile created to automate build → test → deploy workflow.  
+- **Containerization:** Docker used to package the application for consistent deployment.  
+- **Multi-branch Pipeline:** Jenkins automatically triggers builds based on GitLab branches.  
+
+## Tools & Technologies
+
+| Category | Tools Used |
+|-----------|------------|
+| **Version Control** | Git, GitLab |
+| **Build Management** | Maven |
+| **Testing** | Selenium WebDriver |
+| **Automation Server** | Jenkins |
+| **Containerization** | Docker &amp; Docker Hub |
+| **IDE** | IntelliJ IDEA, Visual Studio Code |
+
+
+## Pipeline Workflow
+
+1. **Code Commit:** Developers push source code to GitLab.  
+2. **Build Stage:** Jenkins triggers a Maven build.  
+3. **Testing:** Selenium tests automatically run against the application.  
+4. **Dockerization:** On successful tests, a Docker image is built.  
+5. **Push to Docker Hub:** The image is uploaded using secure credentials.  
+6. **Deployment:** Jenkins deploys the containerized app to the target environment.  
+
+![CI/CD Pipeline Diagram](/images/projects/project-02/diagram.jpg)
+
+## Results
+
+- ✅ **Automated end-to-end delivery pipeline** implemented  
+- 🧩 **Reduced manual intervention** and improved reliability  
+- 🚀 **Faster build and deployment cycles** through automation  
+- 🧠 **Better collaboration** between Dev and Ops teams via shared CI/CD environment  
+- 🐳 **Portable deployment** through Docker containers
+
+## Lessons Learned
+
+- Understanding and applying **DevOps culture (CAMS: Culture, Automation, Measurement, Sharing)**.  
+- Mastering **Jenkins Pipelines** .  
+- Integrating multiple tools seamlessly in a production-like setup.  
+- Improving debugging and test automation strategies.
+
+## Conclusion
+
+This project successfully demonstrated how DevOps practices and CI/CD automation improve **software delivery speed, quality, and reliability**.  
+Through the use of Jenkins, Docker, Maven, and GitLab, the team achieved **a complete automated pipeline**—a vital step toward real-world DevOps maturity.

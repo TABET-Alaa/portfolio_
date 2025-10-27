@@ -19,3 +19,4 @@ export {
   work,
   gallery,
 } from "@/app/resources/content";
+export type { };

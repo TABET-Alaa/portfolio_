@@ -9,7 +9,7 @@ import { Metadata } from 'next';
 import { Meta, Schema } from "@/once-ui/modules";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const posts = getPosts(["src", "app", "blog", "simple-posts"]);
+  const posts = getPosts(["src", "app", "blogexample", "posts"]);
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -23,7 +23,7 @@ export async function generateMetadata({
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug) ? routeParams.slug.join('/') : routeParams.slug || '';
 
-  const posts = getPosts(["src", "app", "blog", "simple-posts"]) 
+  const posts = getPosts(["src", "app", "blogexample", "posts"]) 
   let post = posts.find((post) => post.slug === slugPath);
 
   if (!post) return {};
@@ -33,17 +33,17 @@ export async function generateMetadata({
     description: post.metadata.summary,
     baseURL: baseURL,
     image: post.metadata.image ? `${baseURL}${post.metadata.image}` : `${baseURL}/og?title=${post.metadata.title}`,
-    path: `${blog.path}/${post.slug}`,
+    path: `/blogexample/${post.slug}`,
   });
 }
 
-export default async function Blog({
+export default async function BlogExample({
   params
 }: { params: Promise<{ slug: string | string[] }> }) {
   const routeParams = await params;
   const slugPath = Array.isArray(routeParams.slug) ? routeParams.slug.join('/') : routeParams.slug || '';
 
-  let post = getPosts(["src", "app", "blog", "simple-posts"]).find((post) => post.slug === slugPath);
+  let post = getPosts(["src", "app", "blogexample", "posts"]).find((post) => post.slug === slugPath);
 
   if (!post) {
     notFound();
@@ -62,7 +62,7 @@ export default async function Blog({
           <Schema
             as="blogPosting"
             baseURL={baseURL}
-            path={`${blog.path}/${post.slug}`}
+            path={`/blogexample/${post.slug}`}
             title={post.metadata.title}
             description={post.metadata.summary}
             datePublished={post.metadata.publishedAt}
@@ -74,7 +74,7 @@ export default async function Blog({
               image: `${baseURL}${person.avatar}`,
             }}
           />
-          <Button data-border="rounded" href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
+          <Button data-border="rounded" href="/blogexample" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
             Posts
           </Button>
           <Heading variant="display-strong-s">{post.metadata.title}</Heading>
@@ -106,3 +106,5 @@ export default async function Blog({
     </Row>
   );
 }
+
+

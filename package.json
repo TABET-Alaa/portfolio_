@@ -27,7 +27,12 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "sass": "^1.86.3",
-    "sharp": "^0.34.1"
+    "sharp": "^0.34.1",
+    "@sanity/client": "^6.21.3",
+    "groq": "^3.53.3",
+    "@sanity/vision": "^3.60.1",
+    "sanity": "^3.60.1",
+    "next-sanity": "^9.8.27"
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "^2.1.1",

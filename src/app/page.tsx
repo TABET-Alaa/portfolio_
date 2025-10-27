@@ -1,4 +1,5 @@
 import React from "react";
+import { fetchSingle } from "@/lib/sanity";
 
 import { Heading, Flex, Text, Button, Avatar, RevealFx, Column, Badge, Row } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
@@ -18,7 +19,18 @@ export async function generateMetadata() {
   });
 }
 
-export default function Home() {
+export default async function Home() {
+  const pageInfo = await fetchSingle<{ backgroundInformation?: string }>(
+    `*[_type == "pageInfo"][0]{ backgroundInformation }`
+  );
+  const headline = home.headline;
+  const subline = pageInfo?.backgroundInformation ? (
+    <>
+      {pageInfo.backgroundInformation}
+    </>
+  ) : (
+    home.subline
+  );
   return (
     <Column maxWidth="m" gap="xl" horizontal="center">
       <Schema
@@ -46,12 +58,12 @@ export default function Home() {
           )}
           <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="16">
             <Heading wrap="balance" variant="display-strong-l">
-              {home.headline}
+              {headline}
             </Heading>
           </RevealFx>
           <RevealFx translateY="8" delay={0.2} fillWidth horizontal="start" paddingBottom="32">
             <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
-              {home.subline}
+              {subline}
             </Text>
           </RevealFx>
           <RevealFx paddingTop="12" delay={0.4} horizontal="start" paddingLeft="12">

@@ -7,15 +7,19 @@ interface PostsProps {
     columns?: '1' | '2' | '3';
     thumbnail?: boolean;
     direction?: 'row' | 'column';
+    postsPath?: string[]; // e.g. ['src','app','blog','posts']
+    basePath?: string; // e.g. '/blog' or '/blogexample'
 }
 
 export function Posts({
     range,
     columns = '1',
     thumbnail = false,
-    direction
+    direction,
+    postsPath = ['src', 'app', 'blog', 'posts'],
+    basePath = '/blog'
 }: PostsProps) {
-    let allBlogs = getPosts(['src', 'app', 'blog', 'posts']);
+    let allBlogs = getPosts(postsPath);
 
     const sortedBlogs = allBlogs.sort((a, b) => {
         return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
@@ -40,6 +44,7 @@ export function Posts({
                             post={post}
                             thumbnail={thumbnail}
                             direction={direction}
+                            basePath={basePath}
                         />
                     ))}
                 </Grid>

@@ -24,6 +24,20 @@ npm install
 npm run dev
 ```
 
+## Sanity integration
+
+To enable remote content with Sanity, add a `.env.local` file at the repo root with:
+
+```
+SANITY_PROJECT_ID=your_project_id
+SANITY_DATASET=production
+SANITY_API_VERSION=2025-01-01
+# Optional if needed
+SANITY_READ_TOKEN=your_sanity_token
+```
+
+The homepage will try to read `pageInfo.backgroundInformation` from Sanity. If unavailable or env vars are missing, it falls back to local content in `src/app/resources/content.js`.
+
 **4. Edit config**
 ```
 src/app/resources/config

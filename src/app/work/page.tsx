@@ -16,7 +16,7 @@ export async function generateMetadata() {
 }
 
 export default function Work() {
-  let projects;
+  let projects: any[] = [];
   
   try {
     projects = getPosts(["src", "app", "work", "projects"]);

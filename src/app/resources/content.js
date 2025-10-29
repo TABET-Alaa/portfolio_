@@ -56,8 +56,8 @@ const home = {
   headline: <>Building scalable systems for the enterprise world</>,
   featured: {
     display: true,
-    title: <>Recent project: <strong className="ml-4">Once UI</strong></>,
-    href: "/work/building-once-ui-a-customizable-design-system",
+    title: <>Explore my <strong className="ml-4">Technology Stack</strong></>,
+    href: "/#technologies",
   },
   subline: (
     <>
@@ -223,8 +223,8 @@ const work = {
   path: "/work",
   label: "Work",
   title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
+  description: `Professional projects and work by ${person.name}`,
+  // Create new project pages by adding a new .mdx file to app/work/projects
   // All projects will be listed on the /home and /work routes
 };
 
@@ -279,4 +279,11 @@ const gallery = {
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+const certifications = {
+  path: "/certifications",
+  label: "Certifications",
+  title: `Certifications – ${person.name}`,
+  description: `Professional certifications and credentials held by ${person.name}`,
+};
+
+export { person, social, newsletter, home, about, blog, work, gallery, certifications };

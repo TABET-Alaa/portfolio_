@@ -1,0 +1,129 @@
+---
+title: "Microservices-based Food Delivery Application on AWS with Docker & Kubernetes"
+publishedAt: "2025-10-28"
+summary: "End-to-end development and deployment of a Food Delivery web application using Microservices architecture, Spring Boot, Angular, Docker, Jenkins, and Kubernetes on AWS EKS — integrating CI/CD, cloud databases, and service discovery."
+category: "java-angular"
+images:
+  - "/images/projects/project-01/Build-and-deploy-end-to-end-application.PNG"
+
+team:
+  - name: "Alaaddine Tabet"
+    role: "DevOps Engineer"
+    avatar: "/images/avatar-alaaddine.jpg"
+    linkedIn: "https://www.linkedin.com/in/alaaddinetabet/"
+
+
+link: "https://github.com/TABET-Alaa/food-delivery-app.git"
+---
+
+## Overview
+
+This project demonstrates the implementation of a **Food Delivery Web Application** using **Microservices architecture**, **Spring Boot (Backend)**, and **Angular (Frontend)**.  
+Each microservice — User, Restaurant, Food Catalogue, and Order — was developed and deployed as an independent service.  
+The infrastructure was containerized with **Docker** and orchestrated using **Kubernetes** on **AWS EKS**, ensuring scalability, resilience, and cloud-native deployment.
+
+The system also integrates **Eureka Server** for service discovery, **AWS RDS** for relational data, **MongoDB Atlas** for NoSQL data, and **Jenkins** for CI/CD automation.
+
+---
+
+## Objectives
+
+- Design and implement a modular **microservices-based architecture** for a food delivery platform.  
+- Automate deployment using **Docker, Jenkins, and Kubernetes**.  
+- Host microservices on **AWS EKS** with **load balancing** via **AWS ALB**.  
+- Integrate **SQL (RDS)** and **NoSQL (MongoDB Atlas)** databases.  
+- Apply DevOps principles to achieve **continuous integration and deployment**.
+
+---
+
+## Key Features
+
+- **Independent Microservices**: Restaurant, Food Catalogue, User, and Order services, each with its own database and REST APIs.  
+- **Service Discovery**: Implemented using **Netflix Eureka Server**.  
+- **Frontend Integration**: Angular SPA communicating with backend via RESTful APIs.  
+- **Containerization**: Each service dockerized and managed via Kubernetes deployments.  
+- **CI/CD Pipeline**: Jenkins automates build, test, and deployment.  
+- **Cloud Deployment**: Hosted on **AWS EKS** with **AWS ALB** for load balancing.  
+- **Persistent Databases**: AWS RDS for SQL-based services and MongoDB Atlas for order management.  
+- **Profiling**: Spring Boot profiles for dev, test, and cloud configurations.
+
+---
+
+## Tools & Technologies
+
+| Category | Tools Used |
+|-----------|------------|
+| **Frontend** | Angular, TypeScript |
+| **Backend** | Spring Boot, Java 11 |
+| **Databases** | MySQL (AWS RDS), MongoDB Atlas |
+| **Service Discovery** | Netflix Eureka |
+| **Version Control** | GitHub |
+| **CI/CD** | Jenkins, ArgoCD |
+| **Containerization** | Docker |
+| **Orchestration** | Kubernetes, AWS EKS |
+| **Load Balancing** | AWS ALB |
+| **Testing** | JUnit |
+| **Code Quality** | SonarQube |
+| **Hosting** | AWS EC2, AWS RDS |
+| **Monitoring** | Kubernetes Dashboard |
+
+---
+
+## Architecture Overview
+
+The application is structured into multiple layers:
+
+1. **Frontend (Angular)** – Interactive UI for users to browse restaurants, menus, and place orders.  
+2. **Backend Microservices**:
+   - **User Service** – Manages authentication and user data (MySQL).
+   - **Restaurant Service** – Handles restaurant details (MySQL).
+   - **Food Catalogue Service** – Manages menu items and restaurant info (MySQL).
+   - **Order Service** – Stores orders using MongoDB Atlas.
+3. **Eureka Server** – Central service registry for discovery and communication.
+4. **Docker & Kubernetes** – Each microservice runs as a Docker container inside EKS pods.
+5. **Databases** – AWS RDS (Relational) and MongoDB Atlas (Document-based).
+6. **Load Balancer & Ingress** – AWS ALB + Kubernetes Ingress Controller for routing.
+
+![Food Delivery Microservice Architecture](/images/projects/project-03/food-delivery-diagram.jpg)
+
+---
+
+## Pipeline Workflow
+
+1. **Code Commit:** Developers push changes to GitHub.  
+2. **Build Stage:** Jenkins triggers Maven builds for backend and Angular builds for frontend.  
+3. **Testing:** JUnit tests run automatically.  
+4. **Containerization:** Docker images are built for each microservice.  
+5. **Push to Docker Hub:** Images are uploaded with version tags.  
+6. **Deployment:** Kubernetes manifests are applied on AWS EKS using ArgoCD.  
+7. **Ingress Routing:** AWS ALB routes external traffic to backend and frontend pods.  
+
+---
+
+## Results
+
+- ✅ Fully deployed **cloud-native food delivery platform**  
+- 🚀 Automated builds and deployments using Jenkins & ArgoCD  
+- 🧩 Modular microservices enabling independent scalability  
+- 🧠 Multi-database integration (SQL + NoSQL)  
+- 🐳 Complete containerization and orchestration on AWS EKS  
+- 🌐 Accessible web application with Angular frontend  
+
+---
+
+## Lessons Learned
+
+- Designing **microservices** with clear separation of concerns.  
+- Implementing **Eureka service discovery** and inter-service communication.  
+- Managing multi-database environments efficiently.  
+- Deploying complex apps using **Docker + Kubernetes on AWS**.  
+- Automating pipelines with Jenkins and GitHub integration.  
+
+---
+
+## Conclusion
+
+This project successfully integrates **modern DevOps tools and cloud technologies** to deliver a scalable and automated **microservices-based food delivery application**.  
+Through Docker, Kubernetes, and AWS EKS, the system achieves **high availability**, **fault tolerance**, and **continuous delivery**, representing a complete real-world **DevOps and Cloud Engineering implementation**.
+
+---

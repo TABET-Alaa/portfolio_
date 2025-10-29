@@ -1,8 +1,7 @@
 import { Column, Heading, Text } from "@/once-ui/components";
-import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import { baseURL } from "@/app/resources";
-import { blog, person, newsletter } from "@/app/resources/content";
+import { blog, person } from "@/app/resources/content";
 import { Meta, Schema } from "@/once-ui/modules";
 
 export async function generateMetadata() {
@@ -34,11 +33,9 @@ export default function Blog() {
       <Heading marginBottom="l" variant="display-strong-s">
         {blog.title}
       </Heading>
-      <Text onBackground="neutral-weak" marginBottom="l">A simple example post is shown below.</Text>
       <Column fillWidth flex={1}>
         <Posts range={[1,1]} thumbnail direction="column" postsPath={["src","app","blog","simple-posts"]} basePath="/blog" />
       </Column>
-      {newsletter.display && <Mailchimp newsletter={newsletter} />}
     </Column>
   );
 }

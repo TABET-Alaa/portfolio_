@@ -2,7 +2,8 @@
 
 import { Column, Heading, Text, Button, Flex } from "@/once-ui/components";
 import { ProjectCard } from "@/components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 interface Project {
   slug: string;
@@ -35,7 +36,7 @@ const categories = {
     color: 'green'
   },
   'erp-servicenow': {
-    title: 'ERP & ServiceNow',
+    title: 'ERP (ServiceNow - SAP, Sage...)',
     description: 'Enterprise solutions and service management',
     color: 'purple'
   }
@@ -44,7 +45,15 @@ const categories = {
 type CategoryFilter = 'all' | 'devops-cloud' | 'java-angular' | 'erp-servicenow';
 
 export function Projects({ projects, range }: ProjectsProps) {
-  const [activeFilter, setActiveFilter] = useState<CategoryFilter>('all');
+  const searchParams = useSearchParams();
+  const initialFilter = (searchParams?.get('category') as CategoryFilter) || 'all';
+  const [activeFilter, setActiveFilter] = useState<CategoryFilter>('devops-cloud');
+
+  // Sync filter with query param changes
+  useEffect(() => {
+    const qp = (searchParams?.get('category') as CategoryFilter) || 'devops-cloud';
+    setActiveFilter(qp);
+  }, [searchParams]);
   
   // Add safety check for projects
   if (!projects || !Array.isArray(projects)) {
@@ -70,13 +79,11 @@ export function Projects({ projects, range }: ProjectsProps) {
     : sortedProjects;
 
   // Filter projects based on active filter
-  const filteredProjects = activeFilter === 'all' 
-    ? displayedProjects 
-    : displayedProjects.filter(project => {
-        const projectCategory = project.metadata.category;
-        console.log('Project:', project.metadata.title, 'Category:', projectCategory, 'Filter:', activeFilter);
-        return projectCategory === activeFilter;
-      });
+  const filteredProjects = displayedProjects.filter(project => {
+    const projectCategory = project.metadata.category;
+    console.log('Project:', project.metadata.title, 'Category:', projectCategory, 'Filter:', activeFilter);
+    return projectCategory === activeFilter;
+  });
 
   // Group projects by category
   const projectsByCategory = filteredProjects.reduce((acc, project) => {
@@ -89,10 +96,9 @@ export function Projects({ projects, range }: ProjectsProps) {
   }, {} as Record<string, Project[]>);
 
   const filterButtons = [
-    { key: 'all' as CategoryFilter, label: 'All Projects', color: 'neutral' },
     { key: 'devops-cloud' as CategoryFilter, label: 'DevOps & Cloud', color: 'blue' },
     { key: 'java-angular' as CategoryFilter, label: 'Java & Angular', color: 'green' },
-    { key: 'erp-servicenow' as CategoryFilter, label: 'ERP & ServiceNow', color: 'purple' },
+    { key: 'erp-servicenow' as CategoryFilter, label: 'ERP (ServiceNow - SAP, Sage...)', color: 'purple' },
   ];
 
   return (
@@ -118,116 +124,45 @@ export function Projects({ projects, range }: ProjectsProps) {
       </Column>
 
       {/* Projects Display */}
-      {activeFilter === 'all' ? (
-        // Show all categories when "All" is selected
-        <>
-          {Object.entries(categories).map(([categoryKey, categoryInfo]) => {
-            const categoryProjects = projectsByCategory[categoryKey] || [];
-            
-            if (categoryProjects.length === 0) return null;
-
-            return (
-              <Column key={categoryKey} fillWidth gap="l">
-                <Column gap="s">
-                  <Heading level="2" color={`${categoryInfo.color}-on-background-strong`}>
-                    {categoryInfo.title}
-                  </Heading>
-                  <Text color="neutral-on-background-medium">
-                    {categoryInfo.description}
-                  </Text>
-                </Column>
-                
-                <Column fillWidth gap="l">
-                  {categoryProjects.map((post, index) => (
-                    <ProjectCard
-                      priority={index < 2}
-                      key={post.slug}
-                      href={`work/${post.slug}`}
-                      images={post.metadata.images}
-                      title={post.metadata.title}
-                      description={post.metadata.summary}
-                      content={post.content}
-                      avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
-                      link={post.metadata.link || ""}
-                    />
-                  ))}
-                </Column>
-              </Column>
-            );
-          })}
-          
-          {/* Show uncategorized projects if any */}
-          {projectsByCategory.uncategorized && projectsByCategory.uncategorized.length > 0 && (
-            <Column fillWidth gap="l">
-              <Column gap="s">
-                <Heading level="2" color="neutral-on-background-strong">
-                  Other Projects
-                </Heading>
-                <Text color="neutral-on-background-medium">
-                  Additional projects and work
-                </Text>
-              </Column>
-              
-              <Column fillWidth gap="l">
-                {projectsByCategory.uncategorized.map((post, index) => (
-                  <ProjectCard
-                    priority={index < 2}
-                    key={post.slug}
-                    href={`work/${post.slug}`}
-                    images={post.metadata.images}
-                    title={post.metadata.title}
-                    description={post.metadata.summary}
-                    content={post.content}
-                    avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
-                    link={post.metadata.link || ""}
-                  />
-                ))}
-              </Column>
-            </Column>
-          )}
-        </>
-      ) : (
-        // Show filtered projects
-        <Column fillWidth gap="l">
-          {filteredProjects.length > 0 ? (
-            <>
-              <Column gap="s">
-                <Heading level="2" color={`${categories[activeFilter]?.color || 'neutral'}-on-background-strong`}>
-                  {categories[activeFilter]?.title || 'Filtered Projects'}
-                </Heading>
-                <Text color="neutral-on-background-medium">
-                  {categories[activeFilter]?.description || 'Projects in this category'}
-                </Text>
-              </Column>
-              
-              <Column fillWidth gap="l">
-                {filteredProjects.map((post, index) => (
-                  <ProjectCard
-                    priority={index < 2}
-                    key={post.slug}
-                    href={`work/${post.slug}`}
-                    images={post.metadata.images}
-                    title={post.metadata.title}
-                    description={post.metadata.summary}
-                    content={post.content}
-                    avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
-                    link={post.metadata.link || ""}
-                  />
-                ))}
-              </Column>
-            </>
-          ) : (
-            <Column gap="m" center>
-              <Heading level="3" color="neutral-on-background-medium">
-                No projects found in this category
+      <Column fillWidth gap="l">
+        {filteredProjects.length > 0 ? (
+          <>
+            <Column gap="s">
+              <Heading level="2" color={`${categories[activeFilter]?.color || 'neutral'}-on-background-strong`}>
+                {categories[activeFilter]?.title || 'Filtered Projects'}
               </Heading>
-              <Text color="neutral-on-background-weak">
-                Try selecting a different category or view all projects.
+              <Text color="neutral-on-background-medium">
+                {categories[activeFilter]?.description || 'Projects in this category'}
               </Text>
             </Column>
-          )}
-        </Column>
-      )}
+            
+            <Column fillWidth gap="l">
+              {filteredProjects.map((post, index) => (
+                <ProjectCard
+                  priority={index < 2}
+                  key={post.slug}
+                  href={`work/${post.slug}`}
+                  images={post.metadata.images}
+                  title={post.metadata.title}
+                  description={post.metadata.summary}
+                  content={post.content}
+                  avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
+                  link={post.metadata.link || ""}
+                />
+              ))}
+            </Column>
+          </>
+        ) : (
+          <Column gap="m" center>
+            <Heading level="3" color="neutral-on-background-medium">
+              No projects found in this category
+            </Heading>
+            <Text color="neutral-on-background-weak">
+              Try selecting a different category.
+            </Text>
+          </Column>
+        )}
+      </Column>
     </Column>
   );
 }

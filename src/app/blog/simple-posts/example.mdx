@@ -5,11 +5,110 @@ publishedAt: "2025-10-08"
 tag: "Update"
 ---
 
-Welcome to the simplified blog. This is a minimal example post. You can write in MDX and include basic markdown elements like lists and links.
+# From Monolith to Microservices: When Configuration Turns Into Chaos 🌀
 
-- First point
-- Second point
+> 80% of teams migrating to microservices discover the problem **after going live**.  
+> Not because of the code.  
+> Not because of Kubernetes.  
+> But because of **configuration**.
 
-Check out the full blog examples at [Blog Example](/blogexample).
+---
 
+## 🧩 The Story
+
+![Monolithic vs Microservices](./monolith-vs-microservices-diagram.png)
+
+Sofia, CTO of a fast-growing e-commerce scale-up in Lyon, decided it was time for a big move.  
+Their good old Java Spring monolith had served them well for five years — but it had become painfully slow to evolve.  
+
+Each release took two weeks.  
+Each hotfix required a full redeployment.  
+So, they went for it: **migration to a microservices architecture**.  
+
+In just three months, everything was rebuilt:  
+✅ 18 microservices containerized with Docker  
+✅ A shiny new Kubernetes cluster on AWS EKS  
+✅ Jenkins for CI/CD automation  
+✅ Separate databases on RDS  
+
+Everything looked perfect — until the day of the **production update**.
+
+---
+
+## 💥 The Problem
+
+![CI/CD pipeline misconfiguration](./config-management-pipeline.png)
+
+The team pushed a minor update to the “Order Service.”  
+Just a small feature: a new “delivery method” field and some logging improvements.  
+
+But minutes later, chaos.  
+Orders stopped processing.  
+The “Payment” and “Inventory” services went silent.  
+
+After two stressful hours, Sofia finally found the cause:  
+the updated microservice was pointing to an **old pre-production API URL**.  
+
+Why? Because configuration values (like API URLs) were being **baked inside the Docker image** during Jenkins builds — one image per environment.  
+
+Each service had its own “custom” build with slightly different configs.  
+One small oversight, and production started talking to pre-prod.  
+
+A textbook configuration nightmare.
+
+---
+
+## 📉 The Consequences
+
+- 4 hours of downtime for the order service  
+- Over 12,000 abandoned shopping carts  
+- AWS costs skyrocketing from endless redeploys  
+- And worst of all — the team losing trust in their shiny new CI/CD pipeline  
+
+Ironically, this “modern” migration was supposed to bring **more stability**, not less.
+
+---
+
+## 🧠 The Lesson
+
+With a monolith, this setup might have worked.  
+One app. One build. One config file like `application.properties`.  
+
+But with dozens of microservices, rebuilding for every config change is **a recipe for disaster**.  
+
+That’s when Sofia’s team rediscovered an old truth from the **12-Factor App** methodology:  
+> “Store configuration in the environment, not in the code.”
+
+![Kubernetes ConfigMap and Secrets best practice](./kubernetes-configmap.png)
+
+Here’s how they fixed it:
+
+- Moved secrets to **AWS Secrets Manager**  
+- Used **environment variables** injected at runtime  
+- Managed non-sensitive configs via **Kubernetes ConfigMaps**  
+- Reused the **same Docker image** across all environments (dev, staging, prod)  
+- Stopped rebuilding — started injecting configs dynamically  
+
+The result?  
+Faster deployments. Fewer mistakes. And a system that behaves **the same** everywhere.
+
+---
+
+## 💡 Bonus: 4 Questions to Ask Before Going Microservices
+
+1. Are my Docker images truly **immutable**?  
+2. Are my configs stored **outside** the codebase?  
+3. Can I deploy the **same image** to dev, staging, and prod without rebuilding?  
+4. Does my CI/CD pipeline manage configs — or contaminate them?  
+
+---
+
+## ⚙️ Moral of the Story
+
+In the monolith world, rebuilding per environment was “fine.”  
+In the microservices world, it’s **operational suicide**.  
+
+**Build once. Deploy everywhere. Inject your config.**  
+
+Otherwise, get ready to spend your weekends debugging... `.env` files.
 

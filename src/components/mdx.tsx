@@ -49,6 +49,16 @@ function createImage({ alt, src, ...props }: SmartImageProps & { src: string }) 
     return null;
   }
 
+  // Normalize relative MDX image paths to a safe placeholder to avoid Invalid URL
+  let normalizedSrc = src;
+  const isAbsoluteHttp = /^https?:\/\//i.test(src);
+  const isRootRelative = src.startsWith("/");
+  const isDataUrl = src.startsWith("data:");
+  if (!isAbsoluteHttp && !isRootRelative && !isDataUrl) {
+    console.warn("MDX image uses relative path; replacing with placeholder:", src);
+    normalizedSrc = "/images/projects/project-01/cover-02.jpg";
+  }
+
   return (
     <SmartImage
       marginTop="8"
@@ -59,7 +69,7 @@ function createImage({ alt, src, ...props }: SmartImageProps & { src: string }) 
       border="neutral-alpha-medium"
       sizes="(max-width: 960px) 100vw, 960px"
       alt={alt}
-      src={src}
+      src={normalizedSrc}
       {...props}
     />
   );

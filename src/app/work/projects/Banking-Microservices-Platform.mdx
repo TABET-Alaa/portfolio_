@@ -1,0 +1,125 @@
+---
+title: "Banking Microservices Platform with Spring Boot, Docker & Kubernetes on AWS"
+publishedAt: "2025-05-10"
+summary: "Design and deployment of a cloud-native banking system composed of multiple microservices — including Accounts, Cards, and Loans — using Spring Boot, Docker, and Kubernetes on AWS. Implements CI/CD automation, service discovery, and secure multi-database integration."
+category: "java-angular"
+images:
+  - "/images/projects/project-01/Banking-Microservices-Platform.PNG"
+
+team:
+  - name: "Alaaddine Tabet"
+    role: "DevOps Engineer & Backend Developer"
+    avatar: "/images/avatar-alaaddine.jpg"
+    linkedIn: "https://www.linkedin.com/in/alaaddinetabet/"
+
+link: "https://github.com/TABET-Alaa/accounts-microservice.git"
+---
+
+## Overview
+
+This project showcases the design and deployment of a **Banking Microservices Platform**, built using **Spring Boot**, **Docker**, and **Kubernetes** on **AWS Cloud**.  
+Typically, banks comprise various departments — **Accounts**, **Cards**, and **Loans** — each managing distinct business logic and data.  
+In this project, these modules were implemented as **independent microservices**, each with its own database, service registry, and API interface.
+
+The solution follows a **cloud-native architecture**, ensuring scalability, resilience, and high availability through Kubernetes orchestration and CI/CD automation.
+
+---
+
+## Objectives
+
+- Build a **modular banking system** divided into domain-specific microservices (Accounts, Cards, Loans).  
+- Achieve **service independence** through Docker containerization and RESTful APIs.  
+- Automate the entire **CI/CD process** using Jenkins and ArgoCD.  
+- Deploy microservices on **AWS EKS** with integrated load balancing and monitoring.  
+- Ensure **data persistence** using AWS RDS and MongoDB Atlas.  
+- Apply **Spring Cloud** for configuration management and **Eureka** for service discovery.
+
+---
+
+## Key Features
+
+- **Domain-driven architecture:** Separate microservices for Accounts, Cards, and Loans.  
+- **RESTful communication:** Services interact through well-defined REST APIs.  
+- **Service discovery:** Implemented using Netflix Eureka Server.  
+- **Centralized gateway:** API Gateway routes requests securely to backend services.  
+- **Cloud deployment:** Entire platform hosted on AWS EKS with auto-scaling.  
+- **Data management:** Relational data stored in AWS RDS; transactional logs in MongoDB Atlas.  
+- **Automation:** CI/CD pipeline built with Jenkins and ArgoCD.  
+- **Security:** Environment-based Spring profiles and secrets managed via Kubernetes ConfigMaps.  
+
+---
+
+## Tools & Technologies
+
+| Category | Tools Used |
+|-----------|------------|
+| **Backend** | Spring Boot, Java 11, Lombok, MapStruct |
+| **Databases** | MySQL (AWS RDS), MongoDB Atlas |
+| **Service Discovery** | Netflix Eureka |
+| **API Gateway** | Spring Cloud Gateway |
+| **Containerization** | Docker |
+| **Orchestration** | Kubernetes, AWS EKS |
+| **CI/CD** | Jenkins, ArgoCD |
+| **Version Control** | GitHub |
+| **Load Balancing** | AWS ALB |
+| **Testing** | JUnit |
+| **Monitoring** | Kubernetes Dashboard |
+| **Code Quality** | SonarQube |
+
+---
+
+## System Architecture
+
+The platform is composed of several **independent microservices**:
+
+1. **Account Service** – manages user account data, balances, and transactions.  
+2. **Card Service** – handles debit/credit card issuance, limits, and statements.  
+3. **Loan Service** – processes loan applications, approvals, and EMI schedules.  
+4. **Eureka Server** – registers all services for discovery and communication.  
+5. **API Gateway** – acts as the unified entry point for client requests.  
+6. **Docker Containers** – each microservice packaged and versioned independently.  
+7. **Kubernetes Cluster (AWS EKS)** – manages deployments, scaling, and recovery.  
+8. **Databases** – MySQL for relational data and MongoDB Atlas for unstructured data.  
+
+![Banking Microservices Architecture](/images/projects/project-04/banking-architecture-diagram.jpg)
+
+---
+
+## Pipeline Workflow
+
+1. **Code Push:** Developers push code to GitHub.  
+2. **Build & Test:** Jenkins triggers Maven builds and runs JUnit tests.  
+3. **Containerization:** Docker images are built and tagged for each service.  
+4. **Image Push:** Images pushed to DockerHub for deployment.  
+5. **Continuous Deployment:** ArgoCD syncs and deploys manifests to EKS cluster.  
+6. **Ingress & Load Balancing:** AWS ALB routes user traffic to Kubernetes services.  
+7. **Monitoring:** Kubernetes dashboard tracks pods, logs, and service health.
+
+---
+
+## Results
+
+- ✅ Fully containerized, modular banking backend deployed on AWS EKS.  
+- 🧩 Microservices can scale and update independently without downtime.  
+- ☁️ Achieved continuous integration and automated delivery pipelines.  
+- 🐳 Improved portability and consistency across environments with Docker.  
+- 🔒 Increased reliability through Eureka discovery and API Gateway routing.
+
+---
+
+## Lessons Learned
+
+- Designing **domain-based microservices** for financial systems.  
+- Handling multi-database architecture using Spring Data JPA and MongoDB.  
+- Managing environment configs securely via Spring Boot profiles.  
+- Deploying complex systems on **Kubernetes (EKS)** with minimal downtime.  
+- Implementing **DevOps automation pipelines** in real-world cloud environments.
+
+---
+
+## Conclusion
+
+This project demonstrates the practical implementation of **microservices in the banking sector**, where modularity, security, and scalability are critical.  
+Through **Spring Boot**, **Docker**, **Kubernetes**, and **AWS Cloud**, the system achieves enterprise-grade performance with a fully automated DevOps workflow — aligning with modern **Cloud & DevOps engineering best practices**.
+
+---

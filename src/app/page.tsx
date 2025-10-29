@@ -140,12 +140,12 @@ export default async function Home() {
           <Column gap="s" paddingTop="24">
             <Heading as="h3" variant="heading-strong-m">Focus areas</Heading>
             <Flex wrap gap="8">
-              <Badge background="brand-alpha-weak" onBackground="brand-on-background-strong">DevOps & Cloud</Badge>
-              <Badge background="brand-alpha-weak" onBackground="brand-on-background-strong">Java & Angular</Badge>
-              <Badge background="brand-alpha-weak" onBackground="brand-on-background-strong">ERP & ITSM</Badge>
-              <Badge background="brand-alpha-weak" onBackground="brand-on-background-strong">Microservices</Badge>
-              <Badge background="brand-alpha-weak" onBackground="brand-on-background-strong">CI/CD</Badge>
-              <Badge background="brand-alpha-weak" onBackground="brand-on-background-strong">AWS-AZURE</Badge>
+              <Badge background="brand-alpha-weak" onBackground="brand-strong">DevOps & Cloud</Badge>
+              <Badge background="brand-alpha-weak" onBackground="brand-strong">Java & Angular</Badge>
+              <Badge background="brand-alpha-weak" onBackground="brand-strong">ERP & ITSM</Badge>
+              <Badge background="brand-alpha-weak" onBackground="brand-strong">Microservices</Badge>
+              <Badge background="brand-alpha-weak" onBackground="brand-strong">CI/CD</Badge>
+              <Badge background="brand-alpha-weak" onBackground="brand-strong">AWS-AZURE</Badge>
             </Flex>
           </Column>
         </Column>

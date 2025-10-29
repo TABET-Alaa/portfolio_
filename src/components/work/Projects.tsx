@@ -60,7 +60,7 @@ export function Projects({ projects, range }: ProjectsProps) {
     console.error('Projects data is not available:', projects);
     return (
       <Column fillWidth gap="l" center>
-        <Heading level="3" color="neutral-on-background-medium">
+        <Heading as="h3" color="neutral-on-background-medium">
           No projects available
         </Heading>
         <Text color="neutral-on-background-weak">
@@ -105,7 +105,7 @@ export function Projects({ projects, range }: ProjectsProps) {
     <Column fillWidth gap="xl" marginBottom="40" paddingX="l">
       {/* Filter Buttons */}
       <Column gap="m" fillWidth>
-        <Heading level="2" color="neutral-on-background-strong">
+        <Heading as="h2" color="neutral-on-background-strong">
           Filter by Category
         </Heading>
         <Flex gap="s" wrap>
@@ -128,7 +128,7 @@ export function Projects({ projects, range }: ProjectsProps) {
         {filteredProjects.length > 0 ? (
           <>
             <Column gap="s">
-              <Heading level="2" color={`${categories[activeFilter]?.color || 'neutral'}-on-background-strong`}>
+              <Heading as="h2" color={`${categories[activeFilter]?.color || 'neutral'}-on-background-strong`}>
                 {categories[activeFilter]?.title || 'Filtered Projects'}
               </Heading>
               <Text color="neutral-on-background-medium">
@@ -154,7 +154,7 @@ export function Projects({ projects, range }: ProjectsProps) {
           </>
         ) : (
           <Column gap="m" center>
-            <Heading level="3" color="neutral-on-background-medium">
+            <Heading as="h3" color="neutral-on-background-medium">
               No projects found in this category
             </Heading>
             <Text color="neutral-on-background-weak">

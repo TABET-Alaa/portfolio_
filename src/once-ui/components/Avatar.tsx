@@ -91,6 +91,8 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
             src={src}
             fill
             alt="Avatar"
+            objectFit="contain"
+            objectPosition="top"
             sizes={typeof size === "string" ? `${sizeMapping[size]}px` : `${size * 16}px`}
             className={styles.image}
           />

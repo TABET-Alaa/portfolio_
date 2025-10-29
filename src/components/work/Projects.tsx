@@ -113,7 +113,7 @@ export function Projects({ projects, range }: ProjectsProps) {
             <Button
               key={filter.key}
               onClick={() => setActiveFilter(filter.key)}
-              variant={activeFilter === filter.key ? 'solid' : 'outline'}
+              variant={activeFilter === filter.key ? 'primary' : 'tertiary'}
               color={activeFilter === filter.key ? filter.color : 'neutral'}
               size="s"
             >

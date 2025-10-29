@@ -11,6 +11,7 @@ export interface SmartImageProps extends React.ComponentProps<typeof Flex> {
   alt?: string;
   isLoading?: boolean;
   objectFit?: CSSProperties["objectFit"];
+  objectPosition?: CSSProperties["objectPosition"];
   enlarge?: boolean;
   src: string;
   unoptimized?: boolean;
@@ -24,6 +25,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
   alt = "",
   isLoading = false,
   objectFit = "cover",
+  objectPosition,
   enlarge = false,
   src,
   unoptimized = false,
@@ -169,6 +171,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
             fill
             style={{
               objectFit: objectFit,
+              objectPosition: objectPosition,
             }}
           />
         )}

@@ -1,5 +1,4 @@
 import React from "react";
-import { fetchSingle } from "@/lib/sanity";
 
 import { Heading, Flex, Text, Button, Avatar, RevealFx, Column, Badge, Row } from "@/once-ui/components";
 
@@ -19,17 +18,8 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const pageInfo = await fetchSingle<{ backgroundInformation?: string }>(
-    `*[_type == "pageInfo"][0]{ backgroundInformation }`
-  );
   const headline = home.headline;
-  const subline = pageInfo?.backgroundInformation ? (
-    <>
-      {pageInfo.backgroundInformation}
-    </>
-  ) : (
-    home.subline
-  );
+  const subline = home.subline;
   // Compute latest project
   const allProjects = getPosts(["src", "app", "work", "projects"]) || [];
   const sortedProjects = allProjects

@@ -86,7 +86,16 @@ function slugify(str: string): string {
 
 function createHeading(as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") {
   const CustomHeading = ({ children, ...props }: TextProps<typeof as>) => {
-    const slug = slugify(children as string);
+    let text = "";
+    if (typeof children === "string") {
+      text = children;
+    } else {
+      const parts = React.Children.toArray(children).map((child) =>
+        typeof child === "string" ? child : "",
+      );
+      text = parts.join("");
+    }
+    const slug = slugify(text || "heading");
     return (
       <HeadingLink
         style={{ marginTop: "var(--static-space-24)", marginBottom: "var(--static-space-12)" }}

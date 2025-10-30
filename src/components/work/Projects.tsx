@@ -42,11 +42,11 @@ const categories = {
   }
 };
 
-type CategoryFilter = 'all' | 'devops-cloud' | 'java-angular' | 'erp-servicenow';
+type CategoryFilter = 'devops-cloud' | 'java-angular' | 'erp-servicenow';
 
 export function Projects({ projects, range }: ProjectsProps) {
   const searchParams = useSearchParams();
-  const initialFilter = (searchParams?.get('category') as CategoryFilter) || 'all';
+  const initialFilter = (searchParams?.get('category') as CategoryFilter) || 'devops-cloud';
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>('devops-cloud');
 
   // Sync filter with query param changes

@@ -1,0 +1,122 @@
+---
+title: "Right-Sizing Microservices: Finding the Balance in Migration"
+publishedAt: "2025-10-29"
+summary: "Migrating from a monolith to microservices is not just about containers and Kubernetes — it’s about finding the right service boundaries. Learn how right-sizing and domain-driven design help avoid the traps of both oversized and over-fragmented services, with a real-world example from a financial system."
+category: "architecture-devops"
+images:
+  - "/images/blog/right-size/cover.jpg"
+  - "/images/blog/right-size/boundaries-diagram.jpg"
+---
+
+Migrating from a monolith to microservices in an agile team is **never easy**.  
+It sounds exciting in theory — independent deployments, faster delivery, scalable systems — but once you’re in the middle of it, the real questions become much more practical:
+
+👉 *What do we migrate first?*  
+👉 *How do we know where one service should begin and another should end?*
+
+This is where **right-sizing and identifying service boundaries** make all the difference.
+
+---
+
+### 🚧 The Common Trap
+
+Let’s picture a real-world situation in a **banking or fintech system**.
+
+You’re maintaining a large **core banking monolith** that handles everything — customer onboarding, accounts, transactions, cards, payments, and even compliance.  
+
+A simple update like adding a “daily transaction limit” feature requires coordination between five teams, full regression testing, and a night-time deployment window. Frustration grows, so the decision is made: *let’s move to microservices.*
+
+The first instinct? Cut the monolith into pieces.  
+You isolate the “Payments” module, wrap it in a Docker container, and call it a microservice. 🎉  
+
+But internally, the `PaymentService` still directly accesses customer data, account balances, and even risk checks through shared database tables. You’ve only **moved the monolith into a container** — all the same couplings remain.  
+
+Now, the “Customer” team changes a column in the database, and suddenly “Payments” stops working. Deployment independence? Gone. Scalability? Limited.  
+
+On the other extreme, some teams swing the other way — slicing the system too thin.  
+They build a microservice for **every single function**:  
+`TransactionValidatorService`, `LimitCheckerService`, `FeeCalculatorService`, `NotificationSenderService`...  
+
+Before long, a single payment flow involves 10 different services talking to each other in sequence.  
+When a transaction fails, tracing it across logs feels like detective work — and the operational overhead becomes enormous.  
+
+Both extremes are traps.  
+
+---
+
+### ⚖️ The Balance: Right-Sizing
+
+Right-sizing means **finding the sweet spot** — designing services that are big enough to represent a **business capability**, but small enough to evolve, deploy, and scale independently.
+
+Here are two proven methods teams use to get it right:
+
+#### 1. **Domain-Driven Sizing**
+
+Align your services with **business domains**, not technical layers.  
+In a financial system, natural domain boundaries often look like this:
+
+- **Accounts Service** → manages account creation, balances, and limits  
+- **Payments Service** → handles transfers, bill payments, and settlements  
+- **Risk Service** → manages fraud detection and transaction scoring  
+- **Notifications Service** → handles alerts, emails, and SMS updates  
+
+Each of these services represents a **bounded context** — a complete, self-contained domain that evolves on its own.  
+
+This is how many modern fintechs like **Revolut** or **N26** structure their systems.  
+Their “Payments” team owns the full lifecycle of a transaction — from initiation to settlement — without depending on dozens of other services.
+
+#### 2. **Event-Storming Sizing**
+
+When business logic isn’t crystal clear, **event storming** is your best friend.  
+Bring together product owners, developers, and operations.  
+Map the **real-world events** that happen in the system:  
+
+> “AccountOpened” → “FundsTransferred” → “TransactionApproved” → “NotificationSent”
+
+You’ll quickly see how these events cluster naturally.  
+For example, “FundsTransferred” and “TransactionApproved” clearly belong together in the Payments domain, while “NotificationSent” is separate.  
+
+This method exposes hidden dependencies and helps you define **natural service boundaries** around actual business flows — not arbitrary technical layers.
+
+---
+
+### 💡 A Quick Case Study
+
+A digital bank tried to migrate its monolith core into microservices.  
+Initially, they split services by **technical concerns**: APIs, logic, database.  
+Each microservice still touched the same massive Oracle database. The result? Endless integration bugs and zero autonomy.  
+
+They rebooted the approach, this time using **business-driven boundaries**.  
+They defined four key microservices:  
+- Customer Management  
+- Payments  
+- Risk  
+- Notifications  
+
+Each service owned its own schema and data.  
+The Risk service, for example, used Kafka events like `TransactionInitiated` to run real-time fraud scoring without directly touching the Payments database.  
+
+Within months, their deployment frequency jumped from **one release per month** to **multiple per week**, with fewer cross-team dependencies.  
+
+That’s what right-sizing looks like in practice.  
+
+---
+
+### 🚀 Why It Matters
+
+Without right-sizing, migrating to microservices becomes a trap:  
+either you’re **carrying your monolith problem into containers**, or you’re **drowning in a sea of tiny services**.  
+
+With clear service boundaries, you unlock the *real* benefits of microservices:
+- Independent deployments  
+- Faster iteration cycles  
+- Business-aligned teams  
+- Scalability and resilience  
+
+Because at its core, microservices are **not a technology choice** — they’re an **organizational and architectural discipline**.
+
+---
+
+👉 **This is the heart of the challenge in microservice migration:**  
+It’s not about Docker, Kubernetes, or AWS.  
+It’s about **judgment — the art of drawing the right lines** between what belongs together and what should live apart.

@@ -61,10 +61,10 @@ export const Header = () => {
         horizontal="center"
         data-border="rounded"
       >
-        <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
+        <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s" style={{ minWidth: 0, flexShrink: 1 }}>
           {/* {display.location && <Flex hide="s">{person.location}</Flex>} */}
         </Flex>
-        <Flex fillWidth horizontal="center">
+        <Flex fillWidth horizontal="center" style={{ minWidth: 0, flexShrink: 0 }}>
           <Flex
             background="surface"
             border="neutral-alpha-medium"
@@ -73,8 +73,21 @@ export const Header = () => {
             padding="4"
             horizontal="center"
             zIndex={1}
+            style={{ maxWidth: '100%', overflow: 'visible', flexShrink: 0 }}
           >
-            <Flex gap="4" vertical="center" textVariant="body-default-s">
+            <Flex 
+              gap="4" 
+              vertical="center" 
+              textVariant="body-default-s" 
+              wrap={false} 
+              className={styles.menuContainer}
+              style={{ 
+                flexWrap: 'nowrap', 
+                overflowX: 'auto', 
+                WebkitOverflowScrolling: 'touch',
+                minWidth: 'fit-content'
+              }}
+            >
               {routes["/"] && (
                 <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
               )}
@@ -173,7 +186,7 @@ export const Header = () => {
             </Flex>
           </Flex>
         </Flex>
-        <Flex fillWidth horizontal="end" vertical="center">
+        <Flex fillWidth horizontal="end" vertical="center" style={{ minWidth: 0, flexShrink: 1 }}>
           <Flex
             paddingRight="12"
             horizontal="end"

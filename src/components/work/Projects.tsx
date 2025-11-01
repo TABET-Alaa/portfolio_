@@ -108,7 +108,7 @@ export function Projects({ projects, range }: ProjectsProps) {
         <Heading as="h2" color="neutral-on-background-strong">
           Filter by Category
         </Heading>
-        <Flex gap="s" wrap>
+        <Flex gap="s" wrap={false} style={{ overflowX: 'auto' }}>
           {filterButtons.map((filter) => (
             <Button
               key={filter.key}

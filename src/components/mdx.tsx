@@ -61,15 +61,22 @@ function createImage({ alt, src, ...props }: SmartImageProps & { src: string }) 
 
   return (
     <SmartImage
-      marginTop="8"
-      marginBottom="16"
+      fillWidth
       enlarge
       radius="m"
-      aspectRatio="16 / 9"
       border="neutral-alpha-medium"
+      objectFit="cover"
       sizes="(max-width: 960px) 100vw, 960px"
       alt={alt}
       src={normalizedSrc}
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "block",
+        margin: 0,
+        padding: 0,
+        ...props.style,
+      }}
       {...props}
     />
   );

@@ -11,6 +11,14 @@
     mask-size: 100% 100%;
 }
 
+.menuContainer {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 @media (--s) {
     .position {
         top: auto;

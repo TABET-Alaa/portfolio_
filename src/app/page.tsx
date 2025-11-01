@@ -74,9 +74,9 @@ export default async function Home() {
               <Flex gap="8" vertical="center">
                 {about.avatar.display && (
                   <Avatar
-                    style={{ marginLeft: "-0.75rem", marginRight: "0.25rem", objectFit: "cover", objectPosition: "top" }}
+                    style={{ marginLeft: "-0.75rem", marginRight: "0.25rem" }}
                     src={person.avatar}
-                    size="m"
+                    size="l"
                   />
                 )}
                 {about.title}
@@ -172,18 +172,18 @@ export default async function Home() {
       <RevealFx translateY="16" delay={0.6}>
         <Column fillWidth gap="l" paddingX="l">
           <Heading as="h2" variant="display-strong-xs">Services</Heading>
-          <Flex gap="16" wrap={false}>
-            <Column flex={1} padding="16" background="surface" border="neutral-alpha-medium" radius="m-4" shadow="m" gap="8">
+          <Flex gap="16" wrap style={{ overflowX: 'visible' }}>
+            <Column flex={1} padding="16" background="surface" border="neutral-alpha-medium" radius="m-4" shadow="m" gap="8" style={{ minWidth: '260px' }}>
               <Heading as="h3" variant="heading-strong-s">DevOps & Cloud</Heading>
               <Text onBackground="neutral-weak">CI/CD, containers, IaC, scalable infra.</Text>
               <Button size="s" variant="tertiary" href="/work?category=devops-cloud">View DevOps work</Button>
             </Column>
-            <Column flex={1} padding="16" background="surface" border="neutral-alpha-medium" radius="m-4" shadow="m" gap="8">
+            <Column flex={1} padding="16" background="surface" border="neutral-alpha-medium" radius="m-4" shadow="m" gap="8" style={{ minWidth: '260px' }}>
               <Heading as="h3" variant="heading-strong-s">Java & Angular</Heading>
               <Text onBackground="neutral-weak">Robust backends and polished UIs.</Text>
               <Button size="s" variant="tertiary" href="/work?category=java-angular">View Java/Angular work</Button>
             </Column>
-            <Column flex={1} padding="16" background="surface" border="neutral-alpha-medium" radius="m-4" shadow="m" gap="8">
+            <Column flex={1} padding="16" background="surface" border="neutral-alpha-medium" radius="m-4" shadow="m" gap="8" style={{ minWidth: '260px' }}>
               <Heading as="h3" variant="heading-strong-s">ERP & ITSM</Heading>
               <Text onBackground="neutral-weak">ServiceNow, SAP, enterprise workflows.</Text>
               <Button size="s" variant="tertiary" href="/work?category=erp-servicenow">View ERP work</Button>

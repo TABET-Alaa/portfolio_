@@ -7,7 +7,7 @@ const person = {
     return `${this.firstName} ${this.lastName}`;
   },
   role: "Software Engineer | DevOps | AWS | AZURE | ERP & CRM - Service now, SAP -",
-  avatar: "/images/avatar.jpeg",
+  avatar: "/images/avatar.png",
   email: "alta.tabet@gmail.com",
   location: "Casablanca,Morocco",
   languages: ["English", "Frensh", "Arabe"],

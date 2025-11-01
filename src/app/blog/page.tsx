@@ -34,7 +34,7 @@ export default function Blog() {
         {blog.title}
       </Heading>
       <Column fillWidth flex={1}>
-        <Posts range={[1,1]} thumbnail direction="column" postsPath={["src","app","blog","simple-posts"]} basePath="/blog" />
+        <Posts thumbnail direction="column" postsPath={["src","app","blog","simple-posts"]} basePath="/blog" />
       </Column>
     </Column>
   );

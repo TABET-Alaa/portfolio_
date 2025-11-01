@@ -1,0 +1,129 @@
+---
+title: "The Strangler Fig Pattern: The Path from Monolith to Microservices"
+publishedAt: "2025-10-30"
+summary: "Migrating from a legacy system to microservices doesn't have to be a risky big bang. The Strangler Fig Pattern offers a gradual, low-risk approach that lets teams modernize piece by piece — keeping the system alive while building the future."
+---
+
+Migrating a **legacy or monolithic application** into a **modern microservices architecture** can feel overwhelming.  
+In theory, microservices promise independent deployments, faster delivery, and scalability — but in reality, most teams face a much harder question:
+
+👉 *How do we move to microservices without breaking what already works?*
+
+This is where the **Strangler Fig Pattern** becomes a lifesaver.
+
+---
+
+### 🌱 What Is the Strangler Fig Pattern?
+
+The **Strangler Fig Pattern** is a **software migration strategy** that lets you **gradually replace** parts of a legacy system **piece by piece**, rather than rewriting everything in one go.
+
+The name comes from nature.  
+In tropical forests, a *strangler fig plant* starts its life around a host tree. Over time, it grows stronger, wrapping around the old tree until it completely replaces it — while the forest remains alive throughout the process.
+
+That's exactly what happens in this migration approach:  
+you let the *new system grow around the old one*, until the old monolith quietly fades away.
+
+---
+![Strangler Fig Architecture Diagram](/images/blog/fig-patterrn.PNG)
+
+
+### 🏦 A Real-World Example: Modernizing a Bank System
+
+Let’s imagine a **bank’s monolithic application** that handles everything —  
+**Accounts**, **Cards**, and **Loans** — all tightly coupled in one massive codebase.
+
+A small change, like updating a card limit rule, takes weeks of testing and coordination.  
+Shutting down the old system for a complete rewrite would be far too risky.
+
+Instead, the team decides to follow the **Strangler Fig Pattern**.
+
+#### Step 1 — Identify the first domain
+They start by identifying clear **domain boundaries** — using *Domain-Driven Design* to decide what makes sense as an independent service.  
+The **Accounts** module is a perfect candidate. It’s business-critical but relatively isolated.
+
+#### Step 2 — Build around the monolith
+The new **Accounts microservice** is developed separately, using modern tech (Spring Boot, Node.js, etc.).  
+An **API gateway** — called the *Strangler Facade* — now routes requests either to the old monolith or to the new service.  
+
+When users perform account-related operations, the traffic is redirected to the new microservice, while everything else (Cards and Loans) still runs in the old monolith.
+
+#### Step 3 — Coexist and learn
+Both systems coexist.  
+The development team can compare responses, run A/B tests, and even redirect only a percentage of traffic (e.g. 50%) to the new service to validate behavior.  
+
+If something goes wrong, traffic instantly rolls back to the monolith.  
+The system never goes down.
+
+#### Step 4 — Expand and eliminate
+Once the Accounts service proves stable in production, the team moves on to the **Cards** module, and later **Loans**.  
+
+Over time, more and more requests flow through the new microservices —  
+until one day, the old monolith is barely receiving any traffic.  
+
+At that point, it’s safe to **decommission the legacy** system entirely.
+
+---
+
+### ⚙️ The Four Phases of the Strangler Fig Pattern
+
+Organizations following this pattern typically move through **four stages**:
+
+1. **Identification** → Find the right service boundaries.  
+   Use domain-driven design to decide which parts of the system should be modernized first.  
+2. **Transformation** → Build the new microservice and connect it through the strangler facade (API gateway).  
+3. **Coexistence** → Route traffic gradually between the legacy and the new services, testing and validating along the way.  
+4. **Elimination** → When all functionalities are migrated and stable, retire the old monolith.  
+
+This approach allows both systems to coexist safely — ensuring **zero downtime** and **minimal disruption** to the business.
+
+---
+
+### 🧩 Why Not Just Rewrite Everything?
+
+You might wonder: *Why not do a full rewrite and get it over with?*
+
+That’s what’s called a **Big Bang migration** — where the entire legacy system is replaced at once.  
+It sounds bold, but it’s filled with risk:
+
+- Hard to rollback if something fails  
+- Huge coordination across teams  
+- Often ends in delays or failure  
+
+With the **Strangler Fig Pattern**, migration happens **incrementally**.  
+You learn from each step, reduce risk, and adapt your strategy as you go.
+
+It’s not just safer — it’s smarter.
+
+---
+
+### 💡 Benefits in Practice
+
+Teams adopting the Strangler Fig Pattern consistently report:
+
+- **Minimal risk:** Migrate one component at a time, not the entire system.  
+- **Continuous delivery:** New features can go live without waiting for a full rewrite.  
+- **Operational safety:** Legacy and modern systems run in parallel — no downtime.  
+- **Faster feedback loops:** Each migration phase teaches lessons for the next one.  
+- **Progressive modernization:** The system gets modernized gradually while remaining operational.
+
+In short: you keep the business running while building its future.
+
+---
+
+### 🚀 The Big Picture
+
+The **Strangler Fig Pattern** isn’t just a technical strategy — it’s an **evolution mindset**.  
+Instead of trying to replace your system overnight, you **let the new architecture grow organically** until it becomes the foundation.
+
+Just like the tree in the forest, the legacy system gives structure at first —  
+but eventually, the modern system takes its place, stronger and more resilient than ever.
+
+---
+
+👉 **In interviews or real-world architecture discussions**, if someone asks:  
+“How would you migrate a legacy monolith to microservices?”  
+
+You can simply answer:  
+> “I’d use the Strangler Fig Pattern — migrate gradually, piece by piece, while keeping the system alive.”
+
+Because in the real world, **evolution always beats revolution**.
